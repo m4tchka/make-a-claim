@@ -1,45 +1,57 @@
 import { useState } from "react";
 export default function useForm() {
-    const [newEntry, setNewEntry] = useState({
-        fName: "",
-        sName:"",
-        contactPhone:"",
-        contactEmail:"",
-        notes: "",
-
-        accidentDate: "",
-        accidentDescription:"",
-        registration:"",
-        make:"",
-        model:"",
-        year:"",
-
-        otherContact:"",
-        otherRegistration:"",
-        keyId: Date.now(),
+  const [formData, setFormData] = useState({
+    policyholderName: "",
+    contactInfo: "",
+    policyNumber: "",
+    accidentDate: "",
+    accidentTime: "",
+    accidentLocation: "",
+    accidentDescription: "",
+    vehicleMake: "",
+    vehicleModel: "",
+    vehicleYear: "",
+    licensePlate: "",
+    driverName: "",
+    driverLicense: "",
+    otherPartyInfo: "",
+    damageDescription: "",
+    injuriesReported: "",
+    policeReportFiled: "",
+    policeReportNumber: "",
+    signature: "",
+    submissionDate: "",
+  });
+  function changeFormData(field, value) {
+    setFormData({ ...formData, [field]: value });
+  }
+  function clearFormEntry() {
+    setFormData({
+      policyholderName: "",
+      contactInfo: "",
+      policyNumber: "",
+      accidentDate: "",
+      accidentTime: "",
+      accidentLocation: "",
+      accidentDescription: "",
+      vehicleMake: "",
+      vehicleModel: "",
+      vehicleYear: "",
+      licensePlate: "",
+      driverName: "",
+      driverLicense: "",
+      otherPartyInfo: "",
+      damageDescription: "",
+      injuriesReported: "",
+      policeReportFiled: "",
+      policeReportNumber: "",
+      signature: "",
+      submissionDate: "",
     });
-    function changeFormName(newName) {
-        setNewEntry({ ...newEntry, name: newName });
-    }
-    function changeFormNotes(newNotes) {
-        setNewEntry({ ...newEntry, notes: newNotes });
-    }
-    function changeFormDate(accidentDate) {
-        setNewEntry({...newEntry, accidentDate:accidentDate})
-    }
-    function clearFormEntry() {
-        setNewEntry({
-            name: "",
-            notes: "",
-            quantity: 0,
-            keyId: Date.now(),
-        });
-    }
-    return {
-        newEntry,
-        changeFormName,
-        changeFormNotes,
-        changeFormDate,
-        clearFormEntry,
-    };
+  }
+  return {
+    formData,
+    changeFormData,
+    clearFormEntry,
+  };
 }
