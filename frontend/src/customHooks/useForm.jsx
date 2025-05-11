@@ -2,7 +2,8 @@ import { useState } from "react";
 export default function useForm() {
   const [formData, setFormData] = useState({
     policyholderName: "",
-    contactInfo: "",
+    contactPhone: "",
+    contactEmail: "",
     policyNumber: "",
     accidentDate: "",
     accidentTime: "",
@@ -19,8 +20,6 @@ export default function useForm() {
     injuriesReported: "",
     policeReportFiled: "",
     policeReportNumber: "",
-    signature: "",
-    submissionDate: "",
   });
   function changeFormData(field, value) {
     setFormData({ ...formData, [field]: value });
@@ -28,7 +27,8 @@ export default function useForm() {
   function clearFormEntry() {
     setFormData({
       policyholderName: "",
-      contactInfo: "",
+      contactPhone: "",
+      contactEmail: "",
       policyNumber: "",
       accidentDate: "",
       accidentTime: "",
@@ -45,8 +45,6 @@ export default function useForm() {
       injuriesReported: "",
       policeReportFiled: "",
       policeReportNumber: "",
-      signature: "",
-      submissionDate: "",
     });
   }
   return {
