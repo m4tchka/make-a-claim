@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 export default function LandingPage() {
@@ -31,7 +32,7 @@ export default function LandingPage() {
       .then((userCredential) => {
         // Signed up successfully
         const user = userCredential.user;
-        console.log("Signed up as:", user.email);
+        alert("Registered as:", user.email, "please sign in");
       })
       .catch((error) => {
         console.error("Sign up error:", error.message);
@@ -87,6 +88,14 @@ export default function LandingPage() {
           <p>No user found</p>
         )}
       </section>
+      <button
+        onClick={() => {
+          signOut(auth);
+          setIsLoggedIn(false);
+        }}
+      >
+        Log out
+      </button>
     </>
   );
 }
