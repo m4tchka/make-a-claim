@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import "./ClaimForm.css";
 import useForm from "../../customHooks/useForm";
-import { db, auth } from "../../Firebase";
+import { db, auth } from "../../Firebase.js";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 export default function ClaimForm() {
@@ -170,7 +170,7 @@ export default function ClaimForm() {
         </button>
       </form>
       <Link to="/dashboard">
-        <button>Back</button>
+        <button className="back-button">Back</button>
       </Link>
     </div>
   );
