@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import "./ClaimForm.css";
 import useForm from "../../customHooks/useForm";
+import { db, auth } from "../../Firebase";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 export default function ClaimForm() {
   const { formData, changeFormData, clearFormEntry } = useForm();
@@ -14,8 +16,8 @@ export default function ClaimForm() {
     e.preventDefault();
     console.log("Form submitted:", formData);
     alert("Claim submitted successfully!");
-    await (() => {
-      console.log("async'd");
+    await updateDoc(doc(db, "users", auth.currentUser.uid), {
+      claims: arrayUnion(formData),
     });
     clearFormEntry();
   }
@@ -117,8 +119,8 @@ export default function ClaimForm() {
             <option value="no">No</option>
           </select>
           <input
-            name="policeReportNumber (if applicable)"
-            placeholder="Police Report Number"
+            name="policeReportNumber"
+            placeholder="Police Report Number (if applicable)"
             onChange={handleChange}
             value={formData.policeReportNumber}
             className="form-input"

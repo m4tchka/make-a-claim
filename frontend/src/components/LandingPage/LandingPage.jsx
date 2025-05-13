@@ -17,7 +17,6 @@ export default function LandingPage() {
   async function signIn() {
     await signInWithEmailAndPassword(auth, emailInput, passwordInput)
       .then((userCredential) => {
-        // Signed in successfully
         const user = userCredential.user;
         console.log("Signed in as:", user.email);
       })
@@ -32,8 +31,8 @@ export default function LandingPage() {
     await createUserWithEmailAndPassword(auth, emailInput, passwordInput)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("Created user object",user);
-        alert("Registered as: "+ auth.currentUser.email+", please sign in.");
+        console.log("Created user object", user);
+        alert("Registered as: " + auth.currentUser.email + ", please sign in.");
         console.log(auth.currentUser.email);
       })
       .catch((error) => {
