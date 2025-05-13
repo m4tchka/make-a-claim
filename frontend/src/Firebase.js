@@ -21,4 +21,4 @@ export const auth = getAuth();
 // export const user = auth.currentUser; NOTE: Doesn't work - must use whole auth obj otherwise doesn't "wait" for auth to be verified with firebase
 export const gProvider = new GoogleAuthProvider();
 export const eProvider = new EmailAuthProvider();
-export const colRef = collection(db, "testSaves");
+export const colRef = collection(db, "users");

@@ -1,5 +1,5 @@
 import "./LandingPage.css";
-import { auth } from "../../Firebase.js";
+import { auth, db } from "../../Firebase.js";
 import { useState } from "react";
 import { Link } from "react-router";
 import {
@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(auth.currentUser ? true : false);
@@ -30,13 +31,15 @@ export default function LandingPage() {
   async function signUp() {
     await createUserWithEmailAndPassword(auth, emailInput, passwordInput)
       .then((userCredential) => {
-        // Signed up successfully
         const user = userCredential.user;
-        alert("Registered as:", user.email, "please sign in");
+        console.log("Created user object",user);
+        alert("Registered as: "+ auth.currentUser.email+", please sign in.");
+        console.log(auth.currentUser.email);
       })
       .catch((error) => {
         console.error("Sign up error:", error.message);
       });
+    await setDoc(doc(db, "users", auth.currentUser.uid), { claims: [] });
   }
 
   return (

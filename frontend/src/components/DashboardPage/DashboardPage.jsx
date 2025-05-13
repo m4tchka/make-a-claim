@@ -7,8 +7,12 @@ export default function DashboardPage() {
     <section className="dashboard-container">
       <>
         <div className="button-group">
-          <button className="dashboard-button">Make a New Claim</button>
-          <button className="dashboard-button">View Existing Claims</button>
+          <Link to="/claim">
+            <button className="dashboard-button">Make a New Claim</button>
+          </Link>
+          <Link to="/overview">
+            <button className="dashboard-button">View Existing Claims</button>
+          </Link>
         </div>
         <Link to="/">
           <button

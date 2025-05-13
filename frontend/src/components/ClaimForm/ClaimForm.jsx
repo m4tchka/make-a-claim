@@ -1,15 +1,16 @@
+import { Link } from "react-router";
 import "./ClaimForm.css";
 import useForm from "../../customHooks/useForm";
 
 export default function ClaimForm() {
   const { formData, changeFormData, clearFormEntry } = useForm();
 
-  const handleChange = (e) => {
+  async function handleChange(e) {
     const { name, value } = e.target;
     changeFormData(name, value);
-  };
+  }
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted:", formData);
     alert("Claim submitted successfully!");
@@ -17,7 +18,7 @@ export default function ClaimForm() {
       console.log("async'd");
     });
     clearFormEntry();
-  };
+  }
 
   return (
     <div className="container">
@@ -74,7 +75,7 @@ export default function ClaimForm() {
             onChange={handleChange}
             value={formData.accidentLocation}
             className="form-input"
-            requied
+            requied="true"
           />
           <textarea
             name="accidentDescription"
@@ -89,6 +90,7 @@ export default function ClaimForm() {
             onChange={handleChange}
             value={formData.damageDescription}
             className="form-input"
+            required
           />
           <textarea
             name="injuriesReported"
@@ -125,6 +127,13 @@ export default function ClaimForm() {
         <div className="form-div">
           <h4>Driver Details</h4>
           <input
+            name="driverName"
+            placeholder="Driver Name"
+            onChange={handleChange}
+            value={formData.driverName}
+            className="form-input"
+          />
+          <input
             name="vehicleMake"
             placeholder="Vehicle Make"
             onChange={handleChange}
@@ -153,26 +162,14 @@ export default function ClaimForm() {
             className="form-input"
             required
           />
-
-          <input
-            name="driverName"
-            placeholder="Driver Name"
-            onChange={handleChange}
-            value={formData.driverName}
-            className="form-input"
-          />
-          <input
-            name="driverLicense"
-            placeholder="Driver License Number"
-            onChange={handleChange}
-            value={formData.driverLicense}
-            className="form-input"
-          />
         </div>
         <button type="submit" className="submit-button">
           Submit Claim
         </button>
       </form>
+      <Link to="/dashboard">
+        <button>Back</button>
+      </Link>
     </div>
   );
 }
